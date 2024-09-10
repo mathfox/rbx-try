@@ -1,6 +1,6 @@
 {
-	"name": "@rbxts/pack",
-	"version": "0.0.2",
+	"name": "@rbxts/try",
+	"version": "0.0.1",
 	"description": "Simple utility functions for Luau tuples",
 	"main": "out/init.lua",
 	"types": "out/index.d.ts",
@@ -15,10 +15,10 @@
 		"serve:tests": "rojo serve tests.project.json",
 		"test": "bun run build:tests && bun run patch-include && rojo build tests.project.json --output tests/tests-place.rbxl && run-in-roblox --script tests/run-tests.luau --place tests/tests-place.rbxl"
 	},
-	"keywords": ["roblox", "roblox-ts", "pack", "tuple", "helpers"],
+	"keywords": ["roblox", "roblox-ts", "try", "no-yield", "yield", "sync"],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/mathfox/rbx-pack.git"
+		"url": "git+https://github.com/mathfox/rbx-try.git"
 	},
 	"author": {
 		"name": "Ivan Leontev",
@@ -26,14 +26,15 @@
 	},
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/mathfox/rbx-pack/issues"
+		"url": "https://github.com/mathfox/rbx-try/issues"
 	},
-	"homepage": "https://github.com/mathfox/rbx-pack#readme",
+	"homepage": "https://github.com/mathfox/rbx-try#readme",
 	"publishConfig": {
 		"access": "public"
 	},
 	"dependencies": {
 		"@rbxts/compiler-types": "2.3.0-types.2",
+		"@rbxts/pack": "^0.0.2",
 		"@rbxts/types": "^1.0.804"
 	},
 	"devDependencies": {

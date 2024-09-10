@@ -1,5 +1,5 @@
 {
-	"name": "pack-tests",
+	"name": "try-tests",
 	"emitLegacyScripts": false,
 	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
 	"tree": {
@@ -11,12 +11,12 @@
 				"node_modules": {
 					"$className": "Folder",
 					"@rbxts": {
-						"$path": "node_modules/@rbxts"
+						"$path": "node_modules/@rbxts",
+						"src": {
+							"$path": "out"
+						}
 					}
 				}
-			},
-			"src": {
-				"$path": "out"
 			}
 		}
 	}

@@ -22,6 +22,6 @@ export function createTry(
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 ): <TInput extends ReadonlyArray<any>, TOutput>(
 	callback: (...input: TInput) => TOutput,
-	onFinally: Callback | undefined,
+	onFinally?: Callback | undefined,
 	...input: TInput
 ) => TOutput;
