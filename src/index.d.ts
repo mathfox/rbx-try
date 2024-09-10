@@ -1,13 +1,13 @@
-interface TryProps {
+interface TryProps<TOutput> {
 	/**
 	 * This function should throw an error.
 	 */
-	onYield: (callback: Callback) => void;
+	onYield: (callback: Callback) => TOutput;
 
 	/**
 	 * This function should throw an error.
 	 */
-	onError: (error: unknown, callback: Callback) => void;
+	onError: (error: unknown, callback: Callback) => TOutput;
 }
 
 /**
@@ -17,10 +17,10 @@ interface TryProps {
  * If the function yields or throws an error, the thread is closed and an error is thrown.
  * Regardless of the outcome, the `onFinally` function is called to clean up any resources.
  */
-export function createTry(
-	props: TryProps,
+export function createTry<TOutput>(
+	props: TryProps<TOutput>,
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-): <TInput extends ReadonlyArray<any>, TOutput>(
+): <TInput extends ReadonlyArray<any>>(
 	callback: (...input: TInput) => TOutput,
 	onFinally?: Callback | undefined,
 	...input: TInput

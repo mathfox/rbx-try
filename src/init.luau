@@ -7,8 +7,8 @@ local packResult = require(script.Parent:WaitForChild("pack"):WaitForChild("out"
 type Callback = (...any) -> ...any
 
 type TryProps = {
-	onYield: (callback: Callback) -> (),
-	onError: (error: unknown, callback: Callback) -> (),
+	onYield: (callback: Callback) -> ...any,
+	onError: (error: unknown, callback: Callback) -> ...any,
 }
 
 local function createTry(props: TryProps)
@@ -34,9 +34,9 @@ local function createTry(props: TryProps)
 		if coroutine.status(thread) ~= "dead" then
 			coroutine.close(thread)
 
-			props.onYield(callback)
+			return props.onYield(callback)
 		elseif not success then
-			props.onError(result[1], callback)
+			return props.onError(result[1], callback)
 		end
 
 		return unpack(result :: { any }, 1, resultCount)
