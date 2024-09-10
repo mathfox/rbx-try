@@ -1,0 +1,6 @@
+{
+	"name": "pack",
+	"tree": {
+		"$path": "out"
+	}
+}

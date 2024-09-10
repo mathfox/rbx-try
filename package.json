@@ -1,0 +1,45 @@
+{
+	"name": "@rbxts/pack",
+	"version": "0.0.2",
+	"description": "Simple utility functions for Luau tuples",
+	"main": "out/init.lua",
+	"types": "out/index.d.ts",
+	"files": ["out", "!out/jest.config.*", "!out/**/*.spec.d.ts"],
+	"scripts": {
+		"check": "bunx @biomejs/biome check --write",
+		"prepublishOnly": "bun run check && bun run build",
+		"build": "rbxtsc --type package",
+		"build:tests": "rbxtsc --rojo tests.project.json --type game",
+		"sourcemap:tests": "bun run build:tests && rojo sourcemap tests.project.json --output sourcemap.json",
+		"patch-include": "bun --cwd ./tests/ patch-include.ts",
+		"serve:tests": "rojo serve tests.project.json",
+		"test": "bun run build:tests && bun run patch-include && rojo build tests.project.json --output tests/tests-place.rbxl && run-in-roblox --script tests/run-tests.luau --place tests/tests-place.rbxl"
+	},
+	"keywords": ["roblox", "roblox-ts", "pack", "tuple", "helpers"],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mathfox/rbx-pack.git"
+	},
+	"author": {
+		"name": "Ivan Leontev",
+		"url": "https://github.com/mathfox"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mathfox/rbx-pack/issues"
+	},
+	"homepage": "https://github.com/mathfox/rbx-pack#readme",
+	"publishConfig": {
+		"access": "public"
+	},
+	"dependencies": {
+		"@rbxts/compiler-types": "2.3.0-types.2",
+		"@rbxts/types": "^1.0.804"
+	},
+	"devDependencies": {
+		"@rbxts/jest": "^0.1.0",
+		"@rbxts/jest-globals": "^0.1.0",
+		"roblox-ts": "^2.3.0-dev-393512b",
+		"typescript": "^5.7.0-dev.20240904"
+	}
+}
