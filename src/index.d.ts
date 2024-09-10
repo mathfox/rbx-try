@@ -7,7 +7,7 @@ interface TryProps {
 	/**
 	 * This function should throw an error.
 	 */
-	onError: (callback: Callback) => void;
+	onError: (error: unknown, callback: Callback) => void;
 }
 
 /**

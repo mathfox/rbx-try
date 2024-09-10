@@ -18,7 +18,7 @@ end)
 local status, result = runCLI(ReplicatedStorage, {
 	verbose = false,
 	ci = false,
-}, { ReplicatedStorage.src["jest.config"] }):awaitStatus()
+}, { ReplicatedStorage["rbxts_include"]["node_modules"]["@rbxts"]["src"]["jest.config"] }):awaitStatus()
 
 task.wait(1)
 

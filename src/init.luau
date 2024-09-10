@@ -2,13 +2,13 @@
 --!native
 --!optimize 2
 
-local packResult = require(script.Parent.Parent:WaitForChild("pack"):WaitForChild("src"))
+local packResult = require(script.Parent:WaitForChild("pack"):WaitForChild("out")).packResult
 
 type Callback = (...any) -> ...any
 
 type TryProps = {
 	onYield: (callback: Callback) -> (),
-	onError: (callback: Callback) -> (),
+	onError: (error: unknown, callback: Callback) -> (),
 }
 
 local function createTry(props: TryProps)
@@ -36,7 +36,7 @@ local function createTry(props: TryProps)
 
 			props.onYield(callback)
 		elseif not success then
-			props.onError(callback)
+			props.onError(result[1], callback)
 		end
 
 		return unpack(result :: { any }, 1, resultCount)
@@ -45,4 +45,8 @@ local function createTry(props: TryProps)
 	return try
 end
 
-return createTry
+local exports = {
+	createTry = createTry,
+}
+
+return exports

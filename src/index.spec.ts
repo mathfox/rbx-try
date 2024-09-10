@@ -17,3 +17,22 @@ it("should not allow yielding in the callback", () => {
 		});
 	}).toThrow("yielded");
 });
+
+it("should not allow errors in the callback", () => {
+	expect(() => {
+		const noerror = createTry({
+			onError: () => {
+				error("an error happened");
+			},
+			onYield: (errorValue) => {
+				expect(errorValue).toContain("custom err");
+
+				error("");
+			},
+		});
+
+		noerror(() => {
+			error("custom err");
+		});
+	}).toThrow("an error happened");
+});
